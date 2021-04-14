@@ -44,6 +44,7 @@
 import axios from "axios";
 import M from "materialize-css";
 export default {
+    name:"CardLogin",
   data() {
     return {
       form: {
@@ -58,6 +59,7 @@ export default {
            const params = {username:this.form.email, password: this.form.senha}
            await axios.post(`${process.env.VUE_APP_API_LINK}auth/`,null,{headers:params}).then((res) => {
                M.toast({html: 'Usuário autenticado com sucesso', classes: 'rounded'})
+               console.log(res)
                this.$store.state.user = res.data
                this.$store.state.isLoggedUser = true
                this.$router.push('/projects')

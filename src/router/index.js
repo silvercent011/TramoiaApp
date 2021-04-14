@@ -13,6 +13,11 @@ const routes = [
     path: '/projects',
     name: 'Projects',
     component: () => import(/* webpackChunkName: "projects" */ '../views/ProjectSelector.vue')
+  },
+  {
+    path: '/projects/:id',
+    name: 'ProjectsPg',
+    component: () => import(/* webpackChunkName: "projectspg" */ '../views/ProjectPage.vue')
   }
 ]
 

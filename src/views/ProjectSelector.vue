@@ -30,12 +30,14 @@
                   :key="lab.lab.id"
                   class="collection-item"
                 >
-                    <div>
-                      <h5>Lab de {{ lab.lab.owner_name }}</h5>
-                      <a href="#" v-for="project in lab.projects" :key="project.id" >
-                          <h6>{{ project.title }}</h6>
-                      </a>
+                  <div>
+                    <h5>Lab de {{ lab.lab.owner_name }}</h5>
+                    <div v-for="project in lab.projects" :key="project.id">
+                      <router-link :to="`/projects/${project.id}`">
+                        <h6>{{ project.title }}</h6>
+                      </router-link>
                     </div>
+                  </div>
                 </li>
               </ul>
             </div>
@@ -49,10 +51,11 @@
 <script>
 // props: []
 export default {
+  name: "ProjectSelector",
   data() {
     return { user: null };
   },
-  mounted() {
+  created() {
     this.user = this.$store.state.user;
   },
 };
