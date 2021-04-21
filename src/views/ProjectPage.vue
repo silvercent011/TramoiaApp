@@ -1,39 +1,73 @@
 <template>
-<div>
- <nav class="nav-extended blue">
-    <div class="nav-wrapper container">
-      <a href="#" class="brand-logo">{{ projectData.title }}</a>
-      <!-- <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="badges.html">Components</a></li>
-        <li><a href="collapsible.html">JavaScript</a></li>
-      </ul> -->
+  <div class="">
+    <nav class="nav-extended blue">
+      <div class="nav-wrapper container">
+        <a href="#" class="brand-logo">{{ projectData.title }}</a>
+      </div>
+
+      <div class="nav-content container">
+        <ul class="tabs tabs-transparent">
+          <li class="tab" :key="0">
+            <a v-on:click="activeTab = 0">Pessoas</a>
+          </li>
+          <li class="tab" :key="1"><a v-on:click="activeTab = 1">Lab</a></li>
+          <li
+            class="tab"
+            v-for="mission in projectData.missions"
+            :key="mission.id"
+          >
+            <a v-on:click="activeTab = mission.id">{{ mission.title }}</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="card" v-show="activeTab == 0">
+        <div class="card-content">
+          <h1>PEOPLE</h1>
+        </div>
+      </div>
+      <div class="card" v-show="activeTab == 1">
+        <div class="card-content">
+          <h1>LAB</h1>
+        </div>
+      </div>
+      <div
+        class="card"
+        v-for="mission in projectData.missions"
+        :key="mission.id"
+      >
+        <div class="card" v-show="activeTab == mission.id">
+          <div class="card-content">
+            <h1>{{mission.title}}</h1>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="nav-content container">
-      <ul class="tabs tabs-transparent">
-        <li class="tab"><a href="#test1">Test 1</a></li>
-        <li class="tab"><a class="active" href="#test2">Test 2</a></li>
-        <li class="tab"><a href="#test3">Test 3</a></li>
-        <li class="tab"><a href="#test4">Test 4</a></li>
-      </ul>
-    </div>
-  </nav>
-  <p v-if="projectData">{{projectData}}</p>
-</div>
+  </div>
 </template>
 
 <script>
 export default {
-    name: "ProjectPage",
+  name: "ProjectPage",
+  data() {
+    return {
+      activeTab: 0,
+    };
+  },
   created() {
     const { access_token } = this.$store.state.user;
-    this.$store.dispatch("getProject", {id: this.$route.params.id, access_token:access_token});
+    this.$store.dispatch("getProject", {
+      id: this.$route.params.id,
+      access_token: access_token,
+    });
+    console.log(this.$store.state.actualProject);
   },
   computed: {
-      projectData(){
-          return this.$store.state.actualProject
-      }
-  }
+    projectData() {
+      return this.$store.state.actualProject;
+    },
+  },
 };
 </script>
 
