@@ -1,7 +1,7 @@
 <template>
   <div class="grey darken-4">
     <div class="row">
-      <div class="col s12 m4 offset-m4">
+      <div class="col s12 m6 l4 offset-m3 offset-l4">
         <div class="card row">
           <div class="card-content col">
             <!-- card usuário -->
