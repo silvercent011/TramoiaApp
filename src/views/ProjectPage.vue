@@ -65,22 +65,48 @@
         <div class="card" v-show="activeTab == mission.id">
           <div class="card-content">
             <h1>{{ mission.title }}</h1>
-            <h2><span style="color: yellow; font-size: 50px">ESTATÍSTICAS GERAIS: </span> {{ mission.statistics }}</h2>
-            
-            <div class="content-container"
-              v-for="point  in mission.points"
+            <h2>
+              <span style="color: yellow; font-size: 50px"
+                >ESTATÍSTICAS GERAIS:
+              </span>
+              {{ mission.statistics }}
+            </h2>
+
+            <div
+              class="content-container"
+              v-for="point in mission.points"
               :key="point.id"
             >
-              <div class="content" v-if="point.statistic">
-                <h1><span style="color: red; font-size: 50px">TITULO: </span> {{ point.title }}</h1>
-                <h2><span style="color: blue; font-size: 50px">TIPO DO MAPA: </span>{{ point.type }}</h2>
-                <h3><span style="color: green; font-size: 50px">TIPO DO PONTO: </span>{{ point.point_type }}</h3> 
-                <h1>Pessoas: {{point.statistic.people_count}}</h1>
-                <h1>Questões: {{point.statistic.question_count}}</h1>
-                <h1>Total de comentarios: {{point.statistic.total_comments_count}}</h1>
-                <h1>Total de comentarios pais: {{point.statistic.parent_comments_count}}</h1>
-                <h1>Total de respostas: {{point.statistic.reply_comments_count}}</h1>
-                <hr>
+              <p>{{ point }}</p>
+              <div class="row">
+                <div class="col s12 m12">
+                  <div class="card blue-grey darken-1">
+                    <div class="card-content white-text">
+                      <span class="card-title">{{ point.title }}</span>
+                      <p>
+                        {{ point.description }}
+                      </p>
+                      <p>{{ point.point_type }}</p>
+                      <div class="row container">
+                        <div class="col">
+                          <div class="row">
+                            <h5><i class="tiny material-icons">comment</i>1</h5>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="row">
+                            <h5><i class="tiny material-icons">people</i>1</h5>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="row">
+                            <h5><i class="tiny material-icons">chat_bubble_outline</i>1</h5>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
