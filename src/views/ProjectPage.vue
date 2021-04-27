@@ -54,7 +54,8 @@
       <div class="card" v-show="activeTab == 1">
         <div class="card-content">
           <h1>LAB</h1>
-          {{ projectData.engagement[0] }}
+          {{ "coisas abaixo" }}
+          <ApexComponent :receivedData=projectData.missions></ApexComponent>
         </div>
       </div>
       <div
@@ -90,12 +91,12 @@
                       <div class="row container">
                         <div class="col">
                           <div class="row">
-                            <h5><i class="tiny material-icons">comment</i>1</h5>
+                            <h5><i class="tiny material-icons">comment</i>{{point.statistic ? point.statistic.total_comments_count : 0}}</h5>
                           </div>
                         </div>
                         <div class="col">
                           <div class="row">
-                            <h5><i class="tiny material-icons">people</i>1</h5>
+                            <h5><i class="tiny material-icons">people</i>{{point.statistic ? point.statistic.people_count : 0}}</h5>
                           </div>
                         </div>
                         <div class="col">
@@ -117,8 +118,12 @@
 </template>
 
 <script>
+import ApexComponent from '../components/ApexComponent'
 export default {
   name: "ProjectPage",
+  components:{
+    ApexComponent
+  },
   data() {
     return {
       activeTab: 0,
@@ -136,7 +141,7 @@ export default {
     projectData() {
       return this.$store.state.actualProject;
     },
-  },
+  }
 };
 </script>
 

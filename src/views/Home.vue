@@ -11,7 +11,6 @@ export default {
   name: 'Home',
   components: {
     CardLogin
-    
   }
 }
 </script>
