@@ -64,6 +64,9 @@
         v-for="mission in projectData.missions"
         :key="mission.id"
       >
+        <ApexAllPointsComments :points=mission.points />
+        <ApexAllPointsPeople :points=mission.points />
+        <ApexAllPointsReplies :points=mission.points />
         <div class="card" v-show="activeTab == mission.id">
           <div class="card-content">
             <h1>{{ mission.title }}</h1>
@@ -92,6 +95,12 @@
                           </div>
                         </div>
                       </div>
+                      <!-- <div -->
+                        <!-- class="point-container" -->
+                        <!-- v-for="point in mission.points" -->
+                        <!-- :key="point.id" -->
+                      <!-- > -->
+                      <!-- </div> -->
                     </div>
                   </div>
                 </div>
@@ -113,17 +122,17 @@
                       <div class="row container">
                         <div class="col">
                           <div class="col">
-                            <h5><i class="tiny material-icons">comment</i> {{point.statistic ? point.statistic.total_comments_count : 0}}</h5>
+                            <h5><i class="tiny material-icons">comment</i> {{point.statistics ? point.statistics.total_comments_count : 0}}</h5>
                           </div>
                         </div>
                         <div class="col">
                           <div class="col">
-                            <h5><i class="tiny material-icons">people</i> {{point.statistic ? point.statistic.people_count : 0}}</h5>
+                            <h5><i class="tiny material-icons">people</i> {{point.statistics ? point.statistics.people_count : 0}}</h5>
                           </div>
                         </div>
                         <div class="col">
                           <div class="col">
-                            <h5><i class="tiny material-icons">chat_bubble_outline</i> {{point.statistic ? point.statistic.reply_comments_count : 0}}</h5>
+                            <h5><i class="tiny material-icons">chat_bubble_outline</i> {{point.statistics ? point.statistics.reply_comments_count : 0}}</h5>
                           </div>
                         </div>
                         <ApexPoints :point=point />
@@ -145,6 +154,9 @@ import ApexReplies from '../components/ApexReplies'
 import ApexComments from '../components/ApexComments'
 import ApexContents from '../components/ApexContents'
 import ApexPoints from '../components/ApexPoints'
+import ApexAllPointsComments from '../components/ApexAllPointsComments'
+import ApexAllPointsPeople from '../components/ApexAllPointsPeople'
+import ApexAllPointsReplies from '../components/ApexAllPointsReplies'
 
 export default {
   name: "ProjectPage",
@@ -153,6 +165,9 @@ export default {
     ApexContents,
     ApexComments,
     ApexPoints,
+    ApexAllPointsComments,
+    ApexAllPointsPeople,
+    ApexAllPointsReplies,
   },
   data() {
     return {
