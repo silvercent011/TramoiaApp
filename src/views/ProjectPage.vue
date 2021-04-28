@@ -54,8 +54,9 @@
       <div class="card" v-show="activeTab == 1">
         <div class="card-content">
           <h1>LAB</h1>
-          {{ "coisas abaixo" }}
-          <ApexComponent :receivedData=projectData.missions></ApexComponent>
+          <ApexContents :contents=projectData.missions /><br>   
+          <ApexComments :comments=projectData.missions /><br>   
+          <ApexReplies :replies=projectData.missions /><br>
         </div>
       </div>
       <div
@@ -66,19 +67,37 @@
         <div class="card" v-show="activeTab == mission.id">
           <div class="card-content">
             <h1>{{ mission.title }}</h1>
-            <h2>
-              <span style="color: yellow; font-size: 50px"
-                >ESTATÍSTICAS GERAIS:
-              </span>
-              {{ mission.statistics }}
-            </h2>
-
+              <div class="row">
+                <div class="col s12 m12">
+                  <div class="card blue-grey darken-1">
+                    <div class="card-content white-text"> 
+                      <span class="card-title">Estatísticas gerais</span>
+                      <div class="row container">
+                        <div class="col">
+                          <div class="col">
+                            <h5><i class="tiny material-icons">comment</i> {{mission.statistics.total_comments_count}}</h5>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="col">
+                            <h5><i class="tiny material-icons">attach_file</i> {{mission.statistics.contents_count}}</h5>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="col">
+                            <h5><i class="tiny material-icons">chat_bubble_outline</i> {{mission.statistics.reply_comments_count}}</h5>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             <div
               class="content-container"
               v-for="point in mission.points"
               :key="point.id"
             >
-              <p>{{ point }}</p>
               <div class="row">
                 <div class="col s12 m12">
                   <div class="card blue-grey darken-1">
@@ -90,18 +109,18 @@
                       <p>{{ point.point_type }}</p>
                       <div class="row container">
                         <div class="col">
-                          <div class="row">
-                            <h5><i class="tiny material-icons">comment</i>{{point.statistic ? point.statistic.total_comments_count : 0}}</h5>
+                          <div class="col">
+                            <h5><i class="tiny material-icons">comment</i> {{point.statistic ? point.statistic.total_comments_count : 0}}</h5>
                           </div>
                         </div>
                         <div class="col">
-                          <div class="row">
-                            <h5><i class="tiny material-icons">people</i>{{point.statistic ? point.statistic.people_count : 0}}</h5>
+                          <div class="col">
+                            <h5><i class="tiny material-icons">people</i> {{point.statistic ? point.statistic.people_count : 0}}</h5>
                           </div>
                         </div>
                         <div class="col">
-                          <div class="row">
-                            <h5><i class="tiny material-icons">chat_bubble_outline</i>1</h5>
+                          <div class="col">
+                            <h5><i class="tiny material-icons">chat_bubble_outline</i> {{point.statistic ? point.statistic.reply_comments_count : 0}}</h5>
                           </div>
                         </div>
                       </div>
@@ -118,11 +137,16 @@
 </template>
 
 <script>
-import ApexComponent from '../components/ApexComponent'
+import ApexReplies from '../components/ApexReplies'
+import ApexComments from '../components/ApexComments'
+import ApexContents from '../components/ApexContents'
+
 export default {
   name: "ProjectPage",
   components:{
-    ApexComponent
+    ApexReplies,
+    ApexContents,
+    ApexComments,
   },
   data() {
     return {
