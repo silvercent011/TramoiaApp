@@ -1,12 +1,6 @@
 ## Projeto didático-prático da disciplina (IF977) Engenharia de Software, do curso de graduação em Sistemas de Informação do Centro de Informática (CIn) da Universidade Federal de Pernambuco (UFPE) 2020.1
 
-
-
-# Tramoia APP
-Esta API é a base do projeto Tramoia App.
-O objetivo dessa API é servir de ponte entre os dados do strateegia.digital e o Tramoia App.
-
-
+![Prancheta1_2](https://user-images.githubusercontent.com/38598808/116462731-2eb63b00-a840-11eb-8d2b-a420d35877cc.png)
 
 ## Time
 * Arlindo Maximiano ( amnn@cin.ufpe.br )
@@ -81,20 +75,22 @@ Foco em 5 perguntas:
  
  
 ## Stack da API
-* MongoDB
-* Node
+* Vue.js
+* Node.js
 
 ## Bibliotecas Utilizadas
 * axios
 * express
 * dotenv
-* mongoose
-* body-parser
-* cors
-* nodemon
+* apexcharts
+* vue-apexcharts
+* materialize-css
+* material-design-icons
+* vuex
+* vue-router
 
 ### Rodando localmente
-* git clone https://github.com/silvercent011/TramoiaAPI.git
+* git clone https://github.com/silvercent011/TramoiaApp.git
 * npm start
 
 
