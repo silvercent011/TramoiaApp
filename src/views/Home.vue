@@ -1,5 +1,5 @@
 <template>
-  <div class="grey darken-4">
+  <div class="grey darken-4" style="height: 100vh">
     <card-login />
   </div>
 </template>

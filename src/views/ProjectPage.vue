@@ -58,12 +58,15 @@
             <div class="col s1 m5">
               <ApexContents :contents=projectData.missions /><br>   
             </div>
-             <div class="col s1 m5">
+            <div class="col s1 m5">
               <ApexComments :comments=projectData.missions /><br> 
-              </div>  
-              <div class="col s1 m5">
+            </div>  
+            <div class="col s1 m5">
               <ApexReplies :replies=projectData.missions /><br>   
-              </div>
+            </div>
+            <div class="col s1 m5">   
+              <ApexPieChart :contents=projectData.missions /><br>  
+            </div>
           </div>
         </div>
       </div>
@@ -73,11 +76,20 @@
         :key="mission.id"
       >
         <div class="card" v-show="activeTab == mission.id">
-          <ApexAllPointsComments :points=mission.points />
-          <ApexAllPointsPeople :points=mission.points />
-          <ApexAllPointsReplies :points=mission.points />
           <div class="card-content">
             <h1>{{ mission.title }}</h1>
+            <div class="points-comments" style="display: flex; flex-direction:column; align-items: center; justify-content: center; padding-top: 20px;">
+              <h5 style="font-weight: bold">Total de comentários por kit</h5>
+              <ApexAllPointsComments :points=mission.points />
+            </div>
+            <div class="points-people" style="display: flex; flex-direction:column; align-items: center; justify-content: center; padding-top: 50px;">
+              <h5 style="font-weight: bold">Total de pessoas engajadas por kit</h5>
+              <ApexAllPointsPeople :points=mission.points />
+            </div>
+            <div class="points-replies" style="display: flex; flex-direction:column; align-items: center; justify-content: center; padding-top: 50px;">
+              <h5 style="font-weight: bold">Total de respostas por kit</h5>
+              <ApexAllPointsReplies :points=mission.points />
+            </div>
               <div class="row">
                 <div class="col s1 m12">
                   <div class="card blue-grey darken-1">
@@ -86,20 +98,17 @@
                       <div class="row container">
                         <div class="col">
                           <div class="col">
-                            <h5><i class="tiny material-icons">comment</i> {{mission.statistics.total_comments_count}}</h5>
-                            <ApexComments :comments=[mission] />
+                            <h5 title="Total de comentários"><i class="tiny material-icons">comment</i> {{mission.statistics.total_comments_count}}</h5>
                           </div>
                         </div>
                         <div class="col">
                           <div class="col">
-                            <h5><i class="tiny material-icons">attach_file</i> {{mission.statistics.contents_count}}</h5>
-                            <ApexContents :contents=[mission] />
+                            <h5 title="Total de ferramentas"><i class="tiny material-icons">attach_file</i> {{mission.statistics.contents_count}}</h5>
                           </div>
                         </div>
                         <div class="col">
                           <div class="col">
-                            <h5><i class="tiny material-icons">chat_bubble_outline</i> {{mission.statistics.reply_comments_count}}</h5>
-                            <ApexReplies :replies=[mission] />
+                            <h5 title="Total de respostas"><i class="tiny material-icons">chat_bubble_outline</i> {{mission.statistics.reply_comments_count}}</h5>
                           </div>
                         </div>
                       </div>
@@ -124,21 +133,25 @@
                       <div class="row container">
                         <div class="col">
                           <div class="col">
-                            <h5><i class="tiny material-icons">comment</i> {{point.statistics ? point.statistics.total_comments_count : 0}}</h5>
+                            <h5 title="Total de comentários"><i class="tiny material-icons">comment</i> {{point.statistics ? point.statistics.total_comments_count : 0}}</h5>
                           </div>
                         </div>
                         <div class="col">
                           <div class="col">
-                            <h5><i class="tiny material-icons">people</i> {{point.statistics ? point.statistics.people_count : 0}}</h5>
+                            <h5 title="Total de pessoas engajadas"><i class="tiny material-icons">people</i> {{point.statistics ? point.statistics.people_count : 0}}</h5>
                           </div>
                         </div>
                         <div class="col">
                           <div class="col">
-                            <h5><i class="tiny material-icons">chat_bubble_outline</i> {{point.statistics ? point.statistics.reply_comments_count : 0}}</h5>
+                            <h5 title="Total de respostas em comentários"><i class="tiny material-icons">chat_bubble_outline</i> {{point.statistics ? point.statistics.reply_comments_count : 0}}</h5>
                           </div>
+                        </div>
+                        
+                      </div>
+                        <div>
+                          <h5>Média de comentários por pessoa: {{point.statistics ? (point.statistics.total_comments_count/point.statistics.people_count).toFixed(2) : "inexistente"}}</h5>
                         </div>
                         <ApexPoints :point=point />
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -159,6 +172,7 @@ import ApexPoints from '../components/ApexPoints'
 import ApexAllPointsComments from '../components/ApexAllPointsComments'
 import ApexAllPointsPeople from '../components/ApexAllPointsPeople'
 import ApexAllPointsReplies from '../components/ApexAllPointsReplies'
+import ApexPieChart from '../components/ApexPieChart'
 
 export default {
   name: "ProjectPage",
@@ -170,6 +184,7 @@ export default {
     ApexAllPointsComments,
     ApexAllPointsPeople,
     ApexAllPointsReplies,
+    ApexPieChart,
   },
   data() {
     return {

@@ -1,5 +1,6 @@
 <template>
   <div>
+   <h5>Respostas por kit</h5>
    <apexchart 
     width="450" type="bar"
     :options="options" :series="series">

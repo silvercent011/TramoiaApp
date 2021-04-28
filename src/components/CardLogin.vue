@@ -3,6 +3,9 @@
     <div class="col s12 m4 offset-m4">
       <div class="card row">
         <div class="card-content col">
+          <div class="row center-align">
+            <span style="font-size: 50px">TramoiaApp</span>
+          </div>
           <!-- <span class="card-title">Card Title</span> -->
           <div class="row">
             <img class="col s6 offset-s3" src="@/assets/images/tmapp.png" />

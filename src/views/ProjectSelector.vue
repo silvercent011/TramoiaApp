@@ -1,5 +1,5 @@
 <template>
-  <div class="grey darken-4">
+  <div class="grey darken-4" style="height: 100vh">
     <div class="row">
       <div class="col s12 m6 l4 offset-m3 offset-l4">
         <div class="card row">
