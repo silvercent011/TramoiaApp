@@ -1,7 +1,7 @@
 <template>
   <div>
    <apexchart 
-    width="500" type="bar"
+    width="1100" type="bar"
     :options="options" :series="series">
    </apexchart>  
    
@@ -10,20 +10,23 @@
 
 <script>
 export default {
-  name: 'ApexPoints',
+  name: 'ApexAllPointsComments',
   props: {
-    point: Object,
+    points: Array,
   },
   methods: {
     //Método para popular a chave series com os dados que vão ser plotados no gráfico
     populateSeries() {
-      this.series.push({
-        name: this.point.title,
-        data: [
-          this.point.statistics.total_comments_count,
-          this.point.statistics.people_count,
-          this.point.statistics.reply_comments_count
-        ]
+      let allPoints = this.points
+      allPoints.map(point => {
+        if(point.statistics){
+          this.series.push({
+            name: point.title,
+            data: [
+              point.statistics.total_comments_count,
+            ]
+          })
+        }
       })
     }
   },
@@ -38,8 +41,6 @@ export default {
       xaxis: {
         categories: [
         "Comentários",
-        "Pessoas",
-        "Respostas",
         ]
       } 
     },
