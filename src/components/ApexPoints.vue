@@ -10,24 +10,22 @@
 
 <script>
 export default {
-  name: 'ApexReplies',
+  name: 'ApexPoints',
   props: {
-    replies: Array,
+    point: Object,
   },
   methods: {
     //Método para popular a chave series com os dados que vão ser plotados no gráfico
     populateSeries() {
-      let missions = this.replies
-      missions.map(mission => {
-        this.series.push({
-          name: mission.title, 
-          data: [
-            mission.statistics.replied_parent_comments_count,
-            mission.statistics.reply_comments_count
-          ]
-        })
+      this.series.push({
+        name: this.point.title,
+        data: [
+          this.point.statistic.total_comments_count,
+          this.point.statistic.people_count,
+          this.point.statistic.reply_comments_count
+        ]
       })
-    },
+    }
   },
   beforeMount() {
     this.populateSeries()
@@ -39,8 +37,9 @@ export default {
       },
       xaxis: {
         categories: [
-        "Réplicas em comentários pais",
-        "Total de Réplicas",
+        "Comentários",
+        "Pessoas",
+        "Respostas",
         ]
       } 
     },

@@ -76,16 +76,19 @@
                         <div class="col">
                           <div class="col">
                             <h5><i class="tiny material-icons">comment</i> {{mission.statistics.total_comments_count}}</h5>
+                            <ApexComments :comments=[mission] />
                           </div>
                         </div>
                         <div class="col">
                           <div class="col">
                             <h5><i class="tiny material-icons">attach_file</i> {{mission.statistics.contents_count}}</h5>
+                            <ApexContents :contents=[mission] />
                           </div>
                         </div>
                         <div class="col">
                           <div class="col">
                             <h5><i class="tiny material-icons">chat_bubble_outline</i> {{mission.statistics.reply_comments_count}}</h5>
+                            <ApexReplies :replies=[mission] />
                           </div>
                         </div>
                       </div>
@@ -123,6 +126,7 @@
                             <h5><i class="tiny material-icons">chat_bubble_outline</i> {{point.statistic ? point.statistic.reply_comments_count : 0}}</h5>
                           </div>
                         </div>
+                        <ApexPoints :point=point />
                       </div>
                     </div>
                   </div>
@@ -140,6 +144,7 @@
 import ApexReplies from '../components/ApexReplies'
 import ApexComments from '../components/ApexComments'
 import ApexContents from '../components/ApexContents'
+import ApexPoints from '../components/ApexPoints'
 
 export default {
   name: "ProjectPage",
@@ -147,6 +152,7 @@ export default {
     ApexReplies,
     ApexContents,
     ApexComments,
+    ApexPoints,
   },
   data() {
     return {
