@@ -4,7 +4,7 @@
       <div class="card row">
         <div class="card-content col">
           <div class="row center-align">
-            <span style="font-size: 50px">TramoiaApp</span>
+            <!-- <span style="font-size: 50px">TramoiaApp</span> -->
           </div>
           <!-- <span class="card-title">Card Title</span> -->
           <div class="row">
@@ -39,6 +39,9 @@
           </form>
         </div>
       </div>
+      <div class="col l6 offset-l3">
+          <img src="../assets/images/trmdetails.png" width="250px">
+      </div>
     </div>
   </div>
 </template>
@@ -46,6 +49,7 @@
 <script>
 import axios from "axios";
 import M from "materialize-css";
+
 export default {
     name:"CardLogin",
   data() {
