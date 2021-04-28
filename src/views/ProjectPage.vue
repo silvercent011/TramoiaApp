@@ -54,9 +54,17 @@
       <div class="card" v-show="activeTab == 1">
         <div class="card-content">
           <h1>LAB</h1>
-          <ApexContents :contents=projectData.missions /><br>   
-          <ApexComments :comments=projectData.missions /><br>   
-          <ApexReplies :replies=projectData.missions /><br>
+          <div class="row">
+            <div class="col s1 m5">
+              <ApexContents :contents=projectData.missions /><br>   
+            </div>
+             <div class="col s1 m5">
+              <ApexComments :comments=projectData.missions /><br> 
+              </div>  
+              <div class="col s1 m5">
+              <ApexReplies :replies=projectData.missions /><br>   
+              </div>
+          </div>
         </div>
       </div>
       <div
@@ -64,14 +72,14 @@
         v-for="mission in projectData.missions"
         :key="mission.id"
       >
-        <ApexAllPointsComments :points=mission.points />
-        <ApexAllPointsPeople :points=mission.points />
-        <ApexAllPointsReplies :points=mission.points />
         <div class="card" v-show="activeTab == mission.id">
+          <ApexAllPointsComments :points=mission.points />
+          <ApexAllPointsPeople :points=mission.points />
+          <ApexAllPointsReplies :points=mission.points />
           <div class="card-content">
             <h1>{{ mission.title }}</h1>
               <div class="row">
-                <div class="col s12 m12">
+                <div class="col s1 m12">
                   <div class="card blue-grey darken-1">
                     <div class="card-content white-text"> 
                       <span class="card-title">Estatísticas gerais</span>
@@ -95,12 +103,6 @@
                           </div>
                         </div>
                       </div>
-                      <!-- <div -->
-                        <!-- class="point-container" -->
-                        <!-- v-for="point in mission.points" -->
-                        <!-- :key="point.id" -->
-                      <!-- > -->
-                      <!-- </div> -->
                     </div>
                   </div>
                 </div>
